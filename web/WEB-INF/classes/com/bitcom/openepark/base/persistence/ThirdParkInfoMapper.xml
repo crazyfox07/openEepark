@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bitcom.openepark.base.persistence.ThirdParkInfoMapper">
+
+    <!-- 查询所有封闭停车场的停车场信息，和停车场系统状态信息 libin add 2017-11-20 -->
+    <select id="queryAllThirdParkStateInfo" resultType="com.bitcom.openepark.maintenance.vo.ThirdParkStateVO">
+	    SELECT p.*,m.device_state_code as state,m.device_code
+		FROM third_park_info p
+		LEFT JOIN maint_third_device_state m on p.park_code = m.park_code
+		WHERE m.device_type = '10'
+	</select>
+
+</mapper>

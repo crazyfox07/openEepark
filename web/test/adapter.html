@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>apapter Api</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../common/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../common/js/adapter.js"></script>
+<script type="text/javascript" src="../common/js/json2.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="page-header">
+		<input class="form-control" id="domain_key"  placeholder="domainKey" value="c1f10701a4561f13492a461579f2cb15"/>
+		<h1>1. Adapter Api<small> For tzhtc</small></h1>
+	</div> 
+	
+	<!-- 查询会员接口 begin -->
+	<div class="demo_unit panel panel-success">
+		<div class="panel-heading font-bold">query Leaguer Information</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/getLeaguerInfo.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>String domainId,String timestamp,String parkCode,String plateNo,String plateType,String sign</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;"><input id="domainId" type="text" class="form-control" placeholder="domainId" value="1"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="timeStamp"  placeholder="timeStamp" value="2"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="parkCode" placeholder="parkCode" value=""/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="plateNo" placeholder="plateNo" value=""/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="plateType" placeholder="plateType" value=""/></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group" style="width:100%;">
+							<input id="sign" class="form-control" placeholder="sign"/>
+							<span class="input-group-btn">
+								<button id="sign_btn_getLeaguerInfo" type="submit" class="btn btn-default">Get Sign</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><button id="getLeaguerInfoBtn" type="submit" class="btn btn-success">Submit</button></td>
+				</tr>
+			</table>
+			<h4>return</h4>
+			<div id="getLeaguerInfo_ret_val" class="panel">
+			</div>
+			
+		</div>
+	</div>
+	<!-- 获取会员信息 end -->
+	
+	<!-- 请求会员扣费 begin -->
+	<div class="demo_unit panel panel-success">
+		<div class="panel-heading font-bold">Request for leaguer charge</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/parkLeaguerCharge.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>String domainId,String timestamp,String plateNo,String plateType,String chargeFee,String sign</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;"><input id="domainId_charge" type="text" class="form-control" placeholder="domainId" value="1"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="timeStamp_charge"  placeholder="timeStamp" value="2"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="plateNo_charge" placeholder="plateNo" value=""/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="plateType_charge" placeholder="plateType" value=""/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="charge_fee" placeholder="charge fee" value=""/></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group" style="width:100%;">
+							<input id="sign_charge" class="form-control" placeholder="sign"/>
+							<span class="input-group-btn">
+								<button id="sign_btn_charge" type="submit" class="btn btn-default">Get Sign</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><button id="leaguerChargeBtn" type="submit" class="btn btn-success">Submit</button></td>
+				</tr>
+			</table>
+			<h4>return</h4>
+			<div id="charge_ret_val" class="panel">
+			</div>
+			
+		</div>
+	</div>
+	<!-- 请求会员扣费 end -->
+</div>
+</body>
+<style>
+*{margin: 0;padding: 0;}
+.container{width:800px;}
+.font-bold{font-weight: bold;}
+input{width:400px;}
+td{height:45px;}
+</style>
+</html>

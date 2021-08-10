@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bitcom.openepark.base.persistence.MaintThirdDeviceStateInfoMapper">
+
+    <!-- 保存	libin add	2017-11-9 -->
+    <insert id="insert" parameterType="com.bitcom.openepark.base.domain.MaintThirdDeviceStateInfo">
+        insert into maint_third_device_state_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            nid,
+            <if test="deviceCode != null">
+                device_code,
+            </if>
+            <if test="deviceType != null">
+                device_type,
+            </if>
+            <if test="parkCode != null">
+                park_code,
+            </if>
+            <if test="pointName != null">
+                point_name,
+            </if>
+            <if test="deviceStateCode != null">
+                device_state_code,
+            </if>
+            <if test="deviceStateName != null">
+                device_state_name,
+            </if>
+            <if test="uploadTime != null">
+                upload_time,
+            </if>
+            <if test="insertTime != null">
+                insert_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{nid,jdbcType=VARCHAR},
+            <if test="deviceCode != null">
+                #{deviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceType != null">
+                #{deviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="parkCode != null">
+                #{parkCode,jdbcType=VARCHAR},
+            </if>
+            <if test="pointName != null">
+                #{pointName,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceStateCode != null">
+                #{deviceStateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceStateName != null">
+                #{deviceStateName,jdbcType=VARCHAR},
+            </if>
+            <if test="uploadTime != null">
+                #{uploadTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="insertTime != null">
+                #{insertTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 清空maint_third_device_state_info表的数据	libin	2018-5-7 -->
+    <update id="truncateTable">
+        truncate table maint_third_device_state_info
+    </update>
+
+</mapper>  

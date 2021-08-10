@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bitcom.openepark.base.persistence.ThirdDomainParkRelatMapper">
+    <resultMap id="BaseResultMap" type="com.bitcom.openepark.base.domain.ThirdDomainParkRelat">
+        <id column="nid" property="nid" jdbcType="VARCHAR"/>
+        <result column="domain_id" property="domainId" jdbcType="VARCHAR"/>
+        <result column="park_code" property="parkCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    nid, domain_id, park_code
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from third_domain_park_relat
+        where nid = #{nid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from third_domain_park_relat
+    where nid = #{nid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.bitcom.openepark.base.domain.ThirdDomainParkRelat">
+    insert into third_domain_park_relat (nid, domain_id, park_code
+      )
+    values (#{nid,jdbcType=VARCHAR}, #{domainId,jdbcType=VARCHAR}, #{parkCode,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.bitcom.openepark.base.domain.ThirdDomainParkRelat">
+        insert into third_domain_park_relat
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nid != null">
+                nid,
+            </if>
+            <if test="domainId != null">
+                domain_id,
+            </if>
+            <if test="parkCode != null">
+                park_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nid != null">
+                #{nid,jdbcType=VARCHAR},
+            </if>
+            <if test="domainId != null">
+                #{domainId,jdbcType=VARCHAR},
+            </if>
+            <if test="parkCode != null">
+                #{parkCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bitcom.openepark.base.domain.ThirdDomainParkRelat">
+        update third_domain_park_relat
+        <set>
+            <if test="domainId != null">
+                domain_id = #{domainId,jdbcType=VARCHAR},
+            </if>
+            <if test="parkCode != null">
+                park_code = #{parkCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where nid = #{nid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bitcom.openepark.base.domain.ThirdDomainParkRelat">
+    update third_domain_park_relat
+    set domain_id = #{domainId,jdbcType=VARCHAR},
+      park_code = #{parkCode,jdbcType=VARCHAR}
+    where nid = #{nid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectByDomainId" parameterType="java.lang.String"
+            resultType="com.bitcom.openepark.base.domain.ThirdDomainParkRelat">
+  	select * from third_domain_park_relat where domain_id = #{domainId}
+  </select>
+
+</mapper>

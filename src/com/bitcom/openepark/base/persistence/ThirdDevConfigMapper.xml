@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bitcom.openepark.base.persistence.ThirdDevConfigMapper">
+    <resultMap id="BaseResultMap"
+               type="com.bitcom.openepark.base.domain.ThirdDevConfig">
+        <id column="domain_id" property="domainId" jdbcType="VARCHAR"/>
+        <result column="domain_key" property="domainKey" jdbcType="VARCHAR"/>
+        <result column="server_url" property="serverUrl" jdbcType="VARCHAR"/>
+        <result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP"/>
+        <result column="is_encrpt" property="isEncrpt" jdbcType="VARCHAR"/>
+        <result column="encrpt_type" property="encrptType" jdbcType="VARCHAR"/>
+        <result column="encrpt_key" property="encrptKey" jdbcType="VARCHAR"/>
+        <result column="valid_token" property="validToken" jdbcType="VARCHAR"/>
+        <result column="serv_enable" property="servEnable" jdbcType="VARCHAR"/>
+        <result column="post_url" property="postUrl" jdbcType="VARCHAR"/>
+        <result column="contract" property="contract" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		domain_id, domain_key, server_url, verify_time, is_encrpt, encrpt_type,
+		encrpt_key,
+		valid_token, serv_enable, post_url, contract, phone
+	</sql>
+    <select id="selectByPrimaryKey" resultType="ThirdDevConfig"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from third_dev_config
+        where domain_id = #{domainId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from third_dev_config
+		where domain_id = #{domainId,jdbcType=VARCHAR}
+	</delete>
+    <insert id="insert" parameterType="com.bitcom.openepark.base.domain.ThirdDevConfig">
+		insert into third_dev_config (domain_id, domain_key, server_url,
+		verify_time, is_encrpt, encrpt_type,
+		encrpt_key, valid_token, serv_enable,
+		post_url, contract, phone
+		)
+		values (#{domainId,jdbcType=VARCHAR}, #{domainKey,jdbcType=VARCHAR},
+		#{serverUrl,jdbcType=VARCHAR},
+		#{verifyTime,jdbcType=TIMESTAMP}, #{isEncrpt,jdbcType=VARCHAR}, #{encrptType,jdbcType=VARCHAR},
+		#{encrptKey,jdbcType=VARCHAR}, #{validToken,jdbcType=VARCHAR},
+		#{servEnable,jdbcType=VARCHAR},
+		#{postUrl,jdbcType=VARCHAR}, #{contract,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+		)
+	</insert>
+    <insert id="insertSelective" parameterType="com.bitcom.openepark.base.domain.ThirdDevConfig">
+        insert into third_dev_config
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="domainId != null">
+                domain_id,
+            </if>
+            <if test="domainKey != null">
+                domain_key,
+            </if>
+            <if test="serverUrl != null">
+                server_url,
+            </if>
+            <if test="verifyTime != null">
+                verify_time,
+            </if>
+            <if test="isEncrpt != null">
+                is_encrpt,
+            </if>
+            <if test="encrptType != null">
+                encrpt_type,
+            </if>
+            <if test="encrptKey != null">
+                encrpt_key,
+            </if>
+            <if test="validToken != null">
+                valid_token,
+            </if>
+            <if test="servEnable != null">
+                serv_enable,
+            </if>
+            <if test="postUrl != null">
+                post_url,
+            </if>
+            <if test="contract != null">
+                contract,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="domainId != null">
+                #{domainId,jdbcType=VARCHAR},
+            </if>
+            <if test="domainKey != null">
+                #{domainKey,jdbcType=VARCHAR},
+            </if>
+            <if test="serverUrl != null">
+                #{serverUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyTime != null">
+                #{verifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isEncrpt != null">
+                #{isEncrpt,jdbcType=VARCHAR},
+            </if>
+            <if test="encrptType != null">
+                #{encrptType,jdbcType=VARCHAR},
+            </if>
+            <if test="encrptKey != null">
+                #{encrptKey,jdbcType=VARCHAR},
+            </if>
+            <if test="validToken != null">
+                #{validToken,jdbcType=VARCHAR},
+            </if>
+            <if test="servEnable != null">
+                #{servEnable,jdbcType=VARCHAR},
+            </if>
+            <if test="postUrl != null">
+                #{postUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="contract != null">
+                #{contract,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bitcom.openepark.base.domain.ThirdDevConfig">
+        update third_dev_config
+        <set>
+            <if test="domainKey != null">
+                domain_key = #{domainKey,jdbcType=VARCHAR},
+            </if>
+            <if test="serverUrl != null">
+                server_url = #{serverUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="verifyTime != null">
+                verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isEncrpt != null">
+                is_encrpt = #{isEncrpt,jdbcType=VARCHAR},
+            </if>
+            <if test="encrptType != null">
+                encrpt_type = #{encrptType,jdbcType=VARCHAR},
+            </if>
+            <if test="encrptKey != null">
+                encrpt_key = #{encrptKey,jdbcType=VARCHAR},
+            </if>
+            <if test="validToken != null">
+                valid_token = #{validToken,jdbcType=VARCHAR},
+            </if>
+            <if test="servEnable != null">
+                serv_enable = #{servEnable,jdbcType=VARCHAR},
+            </if>
+            <if test="postUrl != null">
+                post_url = #{postUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="contract != null">
+                contract = #{contract,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where domain_id = #{domainId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bitcom.openepark.base.domain.ThirdDevConfig">
+		update third_dev_config
+		set domain_key = #{domainKey,jdbcType=VARCHAR},
+		server_url = #{serverUrl,jdbcType=VARCHAR},
+		verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+		is_encrpt = #{isEncrpt,jdbcType=VARCHAR},
+		encrpt_type = #{encrptType,jdbcType=VARCHAR},
+		encrpt_key = #{encrptKey,jdbcType=VARCHAR},
+		valid_token = #{validToken,jdbcType=VARCHAR},
+		serv_enable = #{servEnable,jdbcType=VARCHAR},
+		post_url = #{postUrl,jdbcType=VARCHAR},
+		contract = #{contract,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR}
+		where domain_id = #{domainId,jdbcType=VARCHAR}
+	</update>
+
+    <!-- 通过parkCode查找停车场对应的服务地址 -->
+    <select id="queryServUrlByParkCode" parameterType="java.lang.String" resultType="java.lang.String">
+	    select server_url from third_dev_config a join third_domain_park_relat b on a.domain_id = b.domain_id
+	     where b.park_code = #{parkCode}
+	</select>
+    <!-- 通过parkCode查找停车场对应的配置信息 -->
+    <select id="queryDevConfigByParkCode" parameterType="java.lang.String" resultType="ThirdDevConfig">
+	    select a.* from third_dev_config a join third_domain_park_relat b on a.domain_id = b.domain_id
+	     where b.park_code = #{parkCode}
+	</select>
+
+    <!-- 测试用 -->
+    <select id="selectByPrimaryKeyForUpdate" parameterType="java.lang.String" resultType="ThirdDevConfig">
+	    select * from third_dev_config where domain_id = '1' for update;
+	</select>
+    <!-- 测试用 -->
+    <select id="selectAll" parameterType="java.lang.String" resultType="ThirdDevConfig">
+	    select * from third_dev_config;
+	</select>
+
+    <!-- 查询所有停车场的配置信息（必须是完备的，inner join） libin add 2017-11-20 -->
+    <select id="queryAllDevConfig" resultType="com.bitcom.openepark.maintenance.vo.ThirdParkDevConfig">
+	    SELECT p.park_code,c.* 
+		FROM third_park_info p
+		INNER JOIN third_domain_park_relat r on p.park_code = r.park_code
+		INNER JOIN third_dev_config c on r.domain_id = c.domain_id
+		ORDER BY p.park_code ASC
+	</select>
+
+    <select id="getOpenEparkProtocolVersion" resultType="java.lang.String">
+		select config_value from sys_config  where config_key = 'openEpark_protocol_version' limit 0,1
+	</select>
+
+</mapper>

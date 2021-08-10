@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>demo.html</title>
+
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../common/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../common/js/demo.js"></script>
+<script type="text/javascript" src="../common/js/json2.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<div class="page-header">
+		<input class="form-control" id="domain_key"  placeholder="domainKey" value="c1f10701a4561f13492a461579f2cb15"/>
+		<h1>1. API Reference<small> for park service develop</small></h1>
+	</div> 
+	
+	<!-- 服务验证接口 begin -->
+	<div class="demo_unit panel panel-success">
+		<div class="panel-heading font-bold">Park Service Verify</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/verifyServer.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>String domainId,String timestamp,String servUrl,String sign</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;"><input id="domainId" type="text" class="form-control" placeholder="domainId" value="1"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="timeStamp"  placeholder="timeStamp" value="2"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="servUrl" placeholder="servUrl" value="http://192.168.1.193/openEpark/servertest.do"/></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group" style="width:100%;">
+							<input id="sign" class="form-control" placeholder="sign"/>
+							<span class="input-group-btn">
+								<button id="sign_btn_verifyServer" type="submit" class="btn btn-default">Get Sign</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><button id="verifyBtn" type="submit" class="btn btn-success">Submit</button></td>
+				</tr>
+			</table>
+			<h4>return</h4>
+			<div id="verify_ret_val" class="panel">
+			</div>
+			
+		</div>
+	</div>
+	<!-- 服务验证 end -->
+	
+	<!-- 绑定域和停车场关系 begin -->
+	<div class="demo_unit panel panel-success">
+		<div class="panel-heading font-bold">Bind Park to Certain Domain</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/bindPark.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>String domainId,String timeStamp,String parks,String sign</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;"><input id="domainId_bp" type="text" class="form-control" placeholder="domainId" value="1"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="timeStamp_bp"  placeholder="timeStamp" value="2"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="parks" placeholder="park1,park2,park3..." value="1,2,3"/></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group" style="width:100%;">
+							<input id="sign_bp" class="form-control" placeholder="sign"/>
+							<span class="input-group-btn">
+								<button id="sign_btn_bindPark" type="submit" class="btn btn-default">Get Sign</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><button id="bindParkBtn" type="submit" class="btn btn-success">Submit</button></td>
+				</tr>
+			</table>
+			<h4>return</h4>
+			<div id="bindPark_ret_val" class="panel">
+			</div>
+			
+		</div>
+	</div>
+	<!-- 绑定域和停车场关系 end -->
+	
+	<!-- 自定义测试数据传输接口测试 begin -->
+	<div class="demo_unit panel panel-success">
+		<div class="panel-heading font-bold">Custom Data Transfer</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/push/customData.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>String domainId,String timeStamp,String sign,String content</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;"><input id="domainId_cd" type="text" class="form-control" placeholder="domainId" value="1"/></td>
+				</tr>
+				<tr>
+					<td><input class="form-control" id="timeStamp_cd"  placeholder="timeStamp" value="2"/></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="input-group" style="width:100%;">
+							<input id="sign_cd" class="form-control" placeholder="sign"/>
+							<span class="input-group-btn">
+								<button id="sign_btn_customData" type="submit" class="btn btn-default">Get Sign</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<select id="method_select" class="form-control" placeholder="method">
+							<option value="spaceInfo">剩余车位上传</option>
+							<option value="driveIn">驶入记录上传</option>
+							<option value="payDetail">支付记录上传</option>
+							<option value="driveOut">驶离记录上传</option>
+						 </select>
+					</td>
+				</tr>
+			</table>
+			<div class="custom">
+				<table class="spaceInfo">
+					<tr><td style="width:400px;"><input id="space_parkCode" class="form-control"  placeholder="parkCode" /></td></tr>
+					<tr><td><input id="space_total" class="form-control"  placeholder="total" /></td></tr>
+					<tr><td><input id="space_remain" class="form-control"  placeholder="remain" /></td></tr>
+					<tr><td><input id="bookCount" class="form-control"  placeholder="bookCount" /></td></tr>
+					<tr><td><input id="bookRemain" class="form-control"  placeholder="bookRemain" /></td></tr>
+					<tr><td><input id="chargeSpaceCount" class="form-control"  placeholder="chargeSpaceCount" /></td></tr>
+					<tr><td><input id="chargeSpaceRemain" class="form-control"  placeholder="chargeSpaceRemain" /></td></tr>
+				</table>
+				<table class="driveIn">
+					<tr><td style="width:400px;"><input id="driveIn_parkCode" class="form-control"  placeholder="parkCode" /></td></tr>
+					<tr><td><input id="driveIn_orderNo" class="form-control"  placeholder="orderNo" /></td></tr>
+					<tr><td><input id="plateNo" class="form-control"  placeholder="plateNo" /></td></tr>
+					<tr><td><input id="timeIn" class="form-control"  placeholder="timeIn" value="2016-10-10 12:00:00"/></td></tr>
+					<tr><td><input id="spaceCode" class="form-control"  placeholder="spaceCode" /></td></tr>
+					<tr><td><input id="driveIn_imageCount" class="form-control"  placeholder="imageCount" /></td></tr>
+					<tr><td><input id="driveIn_imgType" class="form-control"  placeholder="imgType" value=".jpg"/></td></tr>
+					<tr><td><input id="driveIn_images" class="form-control"  placeholder="base64[] ,here use comma split string:base64_pic1,base64_pic2" /></td></tr>
+				</table>
+				<table class="payDetail">
+					<tr><td style="width:400px;"><input id="payDetail_parkCode" class="form-control"  placeholder="parkCode" /></td></tr>
+					<tr><td><input id="payDetail_orderNo" class="form-control"  placeholder="orderNo" /></td></tr>
+					<tr><td><input id="payFee" class="form-control"  placeholder="payFee" /></td></tr>
+					<tr><td><input id="payType" class="form-control"  placeholder="payType" /></td></tr>
+					<tr><td><input id="payTime" class="form-control"  placeholder="payTime" /></td></tr>
+				</table>
+				<table class="driveOut">
+					<tr><td style="width:400px;"><input id="driveOut_parkCode" class="form-control"  placeholder="parkCode" /></td></tr>
+					<tr><td><input id="driveOut_orderNo" class="form-control"  placeholder="orderNo" /></td></tr>
+					<tr><td><input id="totalCost" class="form-control"  placeholder="totalCost" /></td></tr>
+					<tr><td><input id="realCost" class="form-control"  placeholder="realCost" /></td></tr>
+					<tr><td><input id="timeOut" class="form-control"  placeholder="timeOut" value="2016-10-10 12:00:00"/></td></tr>
+					<tr><td><input id="parkDuration" class="form-control"  placeholder="parkDuration" /></td></tr>
+					<tr><td><input id="leaveState" class="form-control"  placeholder="leaveState" /></td></tr>
+					<tr><td><input id="driveOut_imageCount" class="form-control"  placeholder="imageCount" /></td></tr>
+					<tr><td><input id="driveOut_imgType" class="form-control"  placeholder="imgType" value=".jpg"/></td></tr>
+					<tr><td><input id="driveOut_images" class="form-control"  placeholder="images base64[]" /></td></tr>
+				</table>
+			</div>
+			<button id="customDataBtn" type="submit" class="btn btn-success">Submit</button>
+			<h4>return</h4>
+			<div id="customData_ret_val" class="panel">
+			</div>
+			
+		</div>
+	</div>
+	<!-- 自定义测试数据传输接口测试 end -->
+
+	<div class="page-header">
+		<h1>2. API Reference  <small>for epark or third park service develop</small></h1>
+	</div> 
+	<!-- 订单费用计算调用接口开始 -->
+	<div class="demo_unit panel panel-default">
+		<div class="panel-heading font-bold">Park Service Invoke</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/parkServiceInvoke.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>requestEntity ： String</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;">
+						<select id="invoke_method" class="form-control">
+							<option value="queryOrderFee">订单费用计算</option>
+							<option value="payDetail">线上支付同步</option>
+						 </select>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:400px;" class="request_body_class">
+						<textarea id="queryOrderFee" class="queryOrderFee" style="width:100%;height:330px;font-family: Consolas" >[
+ {
+     "parkCode": "370201",
+     "requestBody": {
+         "method": "queryOrderFee",
+         "parkCode": "370201",
+         "orders": ["1","2"]
+     }
+ },
+ {
+     "parkCode": "370202",
+     "requestBody": {
+         "method": "queryOrderFee",
+         "parkCode": "370202",
+         "orders":['2']
+     }
+ }
+]
+
+						</textarea>
+						<textarea id="payDetail" class="payDetail" style="width:100%;height:250px;font-family: Consolas">[
+ {
+     "parkCode": "1",
+     "requestBody": {
+         "method": "payDetail",
+         "parkCode": "1",
+         "orderNo": "order_1001",
+         "payFee": 12,
+         "payType": "1205",
+         "payTime": "2016-09-23 16:00:00"
+     }
+ }
+]
+
+						</textarea>
+					</td>
+				</tr>
+			</table>
+			<button id="serviceInvokeBtn" type="submit" class="btn btn-success">Submit</button>
+			<h4>return</h4>
+			<div id="Invoke_ret_val" class="panel">
+			</div>
+			
+		</div>
+	</div>
+	<!-- 订单调用接口结束 -->
+	
+	<!-- 停车场服务验证接口 begin-->
+	<div class="demo_unit panel panel-default">
+		<div class="panel-heading font-bold">Park Service Check Avaliable</div>
+		<div class="panel-body">
+			<h4>URL</h4>
+			<p>/parkServiceCheck.do</p>
+			<h4>method</h4>
+			<p>POST</p>
+			<h4>params</h4>
+			<p>String parkCode</p>
+			<h4>Demo</h4>
+			<table>
+				<tr>
+					<td style="width:400px;"><input id="check_parkcode" type="text" class="form-control" placeholder="parkCode" value="1"/></td>
+				</tr>
+				<tr>
+					<td><button id="checkBtn" type="submit" class="btn btn-success">Submit</button></td>
+				</tr>
+			</table>
+			<h4>return</h4>
+			<div id="check_ret_val" class="panel">
+			</div>
+		</div>
+	</div>
+	<!-- 停车场服务验证接口 end-->
+
+</div>
+</body>
+<style>
+*{margin: 0;padding: 0;}
+.container{width:800px;}
+.font-bold{font-weight: bold;}
+input{width:400px;}
+td{height:45px;}
+</style>
+</html>
